@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "920438538603",
+    "firebase_url": "https://atmbuddy-54d0c.firebaseio.com",
+    "project_id": "atmbuddy-54d0c",
+    "storage_bucket": "atmbuddy-54d0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920438538603:android:0fc93e5ac98546b1",
+        "android_client_info": {
+          "package_name": "com.example.user.atmbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "920438538603-4rntdl1ma3vjih5dh65h0lbn43lue1ct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.user.atmbuddy",
+            "certificate_hash": "20b265a52e21638eb91ea4819d46b31df373f458"
+          }
+        },
+        {
+          "client_id": "920438538603-lfods3evnvl7iueojmvnsru2fuhtem1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqWHst5pbGCMUlozFvRBSKRFzX9hLzaXQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "920438538603-lfods3evnvl7iueojmvnsru2fuhtem1q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
