@@ -3,6 +3,7 @@ package com.example.user.atmbuddy;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.database.DatabaseReference;
@@ -26,4 +27,6 @@ public class customer extends AppCompatActivity {
         databaseReference = firebaseDatabase.getReference("customer");
 
     }
+
+
 }

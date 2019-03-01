@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fefddd"
-    tools:context=".customer">
+    tools:context=".bank">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,6 +30,7 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/bnkname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp" />
@@ -47,6 +48,7 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/bnkcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp" />
@@ -65,12 +67,14 @@
                 android:textSize="20dp" />
 
             <EditText
+                android:id="@+id/bnkaddr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp" />
         </LinearLayout>
 
         <Button
+            android:onClick="register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
