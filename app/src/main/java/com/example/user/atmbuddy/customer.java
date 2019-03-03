@@ -85,10 +85,11 @@ public class customer extends AppCompatActivity {
     }
 
 
-    public void reg(View view) {
+    public void click(View view) {
         String name = editText1.getText().toString();
         int phoneno = Integer.parseInt(editText2.getText().toString());
         String address = editText3.getText().toString();
+        Log.i(name + phoneno + address, " "+lat + lng);
         cst c = new cst(name, phoneno, address, lat, lng);
         String id = databaseReference.push().getKey();
         databaseReference.child(id).setValue(c);
