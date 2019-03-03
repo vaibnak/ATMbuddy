@@ -16,8 +16,8 @@
         <service
             android:name=".FetchAddressIntentService"
             android:exported="false" />
-        <activity android:name=".MainActivity">
 
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".customer" />
-        <activity android:name=".bank"></activity>
+        <activity android:name=".bank" />
+        <activity android:name=".bankActivity" />
+        <activity android:name=".customerActivity"></activity>
     </application>
 
 </manifest>

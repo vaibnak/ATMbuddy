@@ -4,15 +4,11 @@ public class bnk {
     String bnkname;
     int bnkcode;
     String address;
-    double lat;
-    double lng;
 
-    public bnk(String bnkname, int bnkcode, String address, double lat, double lng) {
+    public bnk(String bnkname, int bnkcode, String address) {
         this.bnkname = bnkname;
         this.bnkcode = bnkcode;
         this.address = address;
-        this.lat = lat;
-        this.lng = lng;
     }
 
     public String getBnkname() {
@@ -27,11 +23,4 @@ public class bnk {
         return address;
     }
 
-    public double getLat() {
-        return lat;
-    }
-
-    public double getLng() {
-        return lng;
-    }
 }

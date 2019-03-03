@@ -22,38 +22,11 @@ public class bank extends AppCompatActivity {
     DatabaseReference databaseReference;
     String addr,bnkname,bnkaddr;
     int bnkcode;
-    private  AddressResultReceiver resultReceiver;
-
-    class AddressResultReceiver extends ResultReceiver {
-        public AddressResultReceiver(Handler handler){
-            super(handler);
-        }
-        @Override
-        protected  void onReceiveResult(int resultCode, Bundle resultData) {
-            if (resultData == null){
-                return;
-            }
-            double lat  = resultData.getDouble("lat");
-            double lng  = resultData.getDouble("lng");
-            String id = databaseReference.push().getKey();
-            bnk b = new bnk(bnkname, bnkcode, bnkaddr,lat, lng);
-            databaseReference.child(id).setValue(b);
-
-        }
-    }
-    protected void startIntentService() {
-        Log.i("starting ", "Intent");
-        Intent intent = new Intent(this, FetchAddressIntentService.class);
-        intent.putExtra("receiver", resultReceiver);
-        intent.putExtra("address", addr);
-        startService(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
-        resultReceiver = new AddressResultReceiver(new android.os.Handler());
         Intent intent = getIntent();
         editText1 = findViewById(R.id.bnkname);
         editText2 = findViewById(R.id.bnkcode);
@@ -67,8 +40,10 @@ public class bank extends AppCompatActivity {
         bnkname = editText1.getText().toString();
         bnkcode = Integer.parseInt(editText2.getText().toString());
         bnkaddr = editText3.getText().toString();
-        addr = bnkaddr;
+        String id = databaseReference.push().getKey();
+        bnk b = new bnk(bnkname, bnkcode, bnkaddr);
+        databaseReference.child(id).setValue(b);
 
-        startIntentService();
+
     }
 }

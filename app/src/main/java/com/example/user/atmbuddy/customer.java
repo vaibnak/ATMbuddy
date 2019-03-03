@@ -93,5 +93,7 @@ public class customer extends AppCompatActivity {
         cst c = new cst(name, phoneno, address, lat, lng);
         String id = databaseReference.push().getKey();
         databaseReference.child(id).setValue(c);
+        Intent intent = new Intent(getApplicationContext(), bankActivity.class);
+        startActivity(intent);
     }
 }
