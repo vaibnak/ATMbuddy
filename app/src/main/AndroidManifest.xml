@@ -27,7 +27,8 @@
         <activity android:name=".customer" />
         <activity android:name=".bank" />
         <activity android:name=".bankActivity" />
-        <activity android:name=".customerActivity"></activity>
+        <activity android:name=".customerActivity" />
+        <activity android:name=".addATM"></activity>
     </application>
 
 </manifest>

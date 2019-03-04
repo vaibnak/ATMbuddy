@@ -43,7 +43,8 @@ public class bank extends AppCompatActivity {
         String id = databaseReference.push().getKey();
         bnk b = new bnk(bnkname, bnkcode, bnkaddr);
         databaseReference.child(id).setValue(b);
-
+        Intent intent = new Intent(getApplicationContext(), customerActivity.class);
+        startActivity(intent);
 
     }
 }
