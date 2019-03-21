@@ -62,37 +62,37 @@ public class customer extends AppCompatActivity {
         button = findViewById(R.id.btn_reg);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("customer");
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
-        }else{
-            fusedLocationProviderClient.getLastLocation()
-                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                        @Override
-                        public void onSuccess(Location location) {
-                            if(location != null){
-                                lng = location.getLongitude();
-                                lat = location.getLatitude();
-                                Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
-                            }else{
-                                lng = 22;
-                                lat = 22;
-                                Toast.makeText(getApplicationContext(), "location is null", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-        }
+//        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+//        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},1);
+//        }else{
+//            fusedLocationProviderClient.getLastLocation()
+//                    .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+//                        @Override
+//                        public void onSuccess(Location location) {
+//                            if(location != null){
+//                                lng = location.getLongitude();
+//                                lat = location.getLatitude();
+//                                Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
+//                            }else{
+//                                lng = 22;
+//                                lat = 22;
+//                                Toast.makeText(getApplicationContext(), "location is null", Toast.LENGTH_SHORT).show();
+//                            }
+//                        }
+//                    });
+//        }
     }
 
 
     public void click(View view) {
-        String name = editText1.getText().toString();
-        int phoneno = Integer.parseInt(editText2.getText().toString());
-        String address = editText3.getText().toString();
-        Log.i(name + phoneno + address, " "+lat + lng);
-        cst c = new cst(name, phoneno, address, lat, lng);
-        String id = databaseReference.push().getKey();
-        databaseReference.child(id).setValue(c);
+//        String name = editText1.getText().toString();
+//        int phoneno = Integer.parseInt(editText2.getText().toString());
+//        String address = editText3.getText().toString();
+//        Log.i(name + phoneno + address, " "+lat + lng);
+//        cst c = new cst(name, phoneno, address, lat, lng);
+//        String id = databaseReference.push().getKey();
+//        databaseReference.child(id).setValue(c);
         Intent intent = new Intent(getApplicationContext(), bankActivity.class);
         startActivity(intent);
     }
