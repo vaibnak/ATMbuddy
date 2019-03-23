@@ -12,9 +12,14 @@ import java.util.ArrayList;
 public class Exampleadapter2  extends RecyclerView.Adapter<Exampleadapter2.ExampleViewHolder> {
     private ArrayList<Exampleitem2> mExampleList;
     private Exampleadapter2.OnItemClickListener mListener;
+    private Exampleadapter2.OnItemLongClickListener onItemLongClickListener;
+    public interface OnItemLongClickListener{
+        void onItemLongClick(int pos);
+    }
     public interface OnItemClickListener{
         void onItemClick(int pos);
     }
+    public void setOnItemLongClickListener(Exampleadapter2.OnItemLongClickListener longlistener){onItemLongClickListener = longlistener;}
     public void setOnItemClickListener(Exampleadapter2.OnItemClickListener listener){
         mListener = listener;
     }
@@ -22,10 +27,25 @@ public class Exampleadapter2  extends RecyclerView.Adapter<Exampleadapter2.Examp
     public static class ExampleViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView1;
         public TextView mTextView2;
-        public ExampleViewHolder(View itemView, final Exampleadapter2.OnItemClickListener listener) {
+        public ExampleViewHolder(View itemView, final Exampleadapter2.OnItemClickListener listener, final OnItemLongClickListener longlistener) {
             super(itemView);
             mTextView1 = itemView.findViewById(R.id.textView1);
             mTextView2 = itemView.findViewById(R.id.textView2);
+
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    if(longlistener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            longlistener.onItemLongClick(position);
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            });
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -50,7 +70,7 @@ public class Exampleadapter2  extends RecyclerView.Adapter<Exampleadapter2.Examp
     @Override
     public Exampleadapter2.ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.exampleitem2, parent, false);
-        Exampleadapter2.ExampleViewHolder evh = new Exampleadapter2.ExampleViewHolder(v, mListener);
+        Exampleadapter2.ExampleViewHolder evh = new Exampleadapter2.ExampleViewHolder(v, mListener, onItemLongClickListener);
         return evh;
     }
 

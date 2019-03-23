@@ -65,15 +65,19 @@ public class myATMS extends Fragment {
     }
 
     public void createExampleList(){
+        exampleList.clear();
+        if(mAdapter != null)
+        mAdapter.notifyDataSetChanged();
+        A.clear();
         mDatabase = FirebaseDatabase.getInstance().getReference("atms");
         Query query = mDatabase.orderByChild("parent").equalTo("SBI");
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     atm a = postSnapshot.getValue(atm.class);
                     A.add(a);
-                    Log.i("item added", "ya");
+//                    Log.i("item added", "ya");
                 }
                 enter(A);
             }
@@ -101,6 +105,38 @@ public class myATMS extends Fragment {
             @Override
             public void onItemClick(int pos) {
 //                changeItem(pos, "clicked");
+            }
+        });
+        mAdapter.setOnItemLongClickListener(new Exampleadapter2.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(int pos) {
+                int cd = A.get(pos).code;
+                Log.i("cd: ", ""+cd);
+                Query query = FirebaseDatabase.getInstance().getReference("atms").orderByChild("code").equalTo(cd);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
+                            atm u = singleSnapshot.getValue(atm.class);
+                            String val;
+                            Log.i("status: " ,u.status );
+                            if(u.status.equals("working")){
+                                val = "not working";
+                            }else{
+                                val = "working";
+                            }
+                            Log.i("found","it");
+                            singleSnapshot.getRef().child("status").setValue(val);
+                            //signout on workdone
+                        }
+                        createExampleList();
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.i("msg: ", "error in database");
+                    }
+                });
+
             }
         });
     }
