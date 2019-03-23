@@ -121,7 +121,10 @@ public class bankActivity extends AppCompatActivity {
         mAdapter.setOnItemLongClickListener(new Exampleadapter.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(int pos) {
-                Toast.makeText(bankActivity.this, "long click on item: "+pos, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), saySomething.class);
+                intent.putExtra("code",A.get(pos).code);
+                intent.putExtra("parent",A.get(pos).parent);
+                startActivity(intent);
             }
         });
     }
