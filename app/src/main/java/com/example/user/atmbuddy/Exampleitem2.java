@@ -3,10 +3,12 @@ package com.example.user.atmbuddy;
 public class Exampleitem2 {
     int code;
     String address;
+    String status;
 
-    public Exampleitem2(int code, String address) {
+    public Exampleitem2(int code, String address, String status) {
         this.code = code;
         this.address = address;
+        this.status = status;
     }
 
     public int getCode() {
@@ -15,5 +17,9 @@ public class Exampleitem2 {
 
     public String getAddress() {
         return address;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

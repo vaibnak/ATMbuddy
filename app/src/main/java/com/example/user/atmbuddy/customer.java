@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -26,6 +27,7 @@ public class customer extends AppCompatActivity {
     EditText editText1;
     EditText editText2;
     EditText editText3;
+    RelativeLayout relativeLayout;
     Button button;
     double lng;
     double lat;
@@ -43,9 +45,11 @@ public class customer extends AppCompatActivity {
                             @Override
                             public void onSuccess(Location location) {
                                 if(location != null){
+                                    lng = location.getLongitude();
+                                    lat = location.getLatitude();
                                     Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "location is null", Toast.LENGTH_SHORT).show();
+                                    showsnackbar("Location null, Please enable location service");
                                 }
                             }
                         });
@@ -60,6 +64,7 @@ public class customer extends AppCompatActivity {
         editText1 = findViewById(R.id.name);
         editText2 = findViewById(R.id.phn);
         editText3 = findViewById(R.id.addr);
+        relativeLayout = findViewById(R.id.relativelayout);
         button = findViewById(R.id.btn_reg);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("customer");
@@ -76,9 +81,7 @@ public class customer extends AppCompatActivity {
                                 lat = location.getLatitude();
                                 Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
                             }else{
-                                lng = 22;
-                                lat = 22;
-                                Toast.makeText(getApplicationContext(), "location is null", Toast.LENGTH_SHORT).show();
+                                showsnackbar("Location null, Please enable location service");
                             }
                         }
                     });
@@ -87,7 +90,7 @@ public class customer extends AppCompatActivity {
 
 
     public void showsnackbar(String msg){
-        Snackbar snackbar = Snackbar.make(relativeLayout, msg, Snackbar.LENGTH_SHORT);
+        Snackbar snackbar = Snackbar.make(relativeLayout, msg, Snackbar.LENGTH_LONG);
         snackbar.show();
     }
 
@@ -100,6 +103,7 @@ public class customer extends AppCompatActivity {
         String id = databaseReference.push().getKey();
         databaseReference.child(id).setValue(c);
         Intent intent = new Intent(getApplicationContext(), bankActivity.class);
+        intent.putExtra("name",name);
         startActivity(intent);
     }
 }

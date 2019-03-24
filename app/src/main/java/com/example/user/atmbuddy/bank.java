@@ -31,20 +31,20 @@ public class bank extends AppCompatActivity {
         editText1 = findViewById(R.id.bnkname);
         editText2 = findViewById(R.id.bnkcode);
         editText3 = findViewById(R.id.bnkaddr);
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference("banks");
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("banks");
 
     }
 
     public void register(View view) {
-//        bnkname = editText1.getText().toString();
-//        bnkcode = Integer.parseInt(editText2.getText().toString());
-//        bnkaddr = editText3.getText().toString();
-//        String id = databaseReference.push().getKey();
-//        bnk b = new bnk(bnkname, bnkcode, bnkaddr);
-//        databaseReference.child(id).setValue(b);
+        bnkname = editText1.getText().toString();
+        bnkcode = Integer.parseInt(editText2.getText().toString());
+        bnkaddr = editText3.getText().toString();
+        String id = databaseReference.push().getKey();
+        bnk b = new bnk(bnkname, bnkcode, bnkaddr);
+        databaseReference.child(id).setValue(b);
         Intent intent = new Intent(getApplicationContext(), customerActivity.class);
+        intent.putExtra("bname", bnkname);
         startActivity(intent);
-
     }
 }

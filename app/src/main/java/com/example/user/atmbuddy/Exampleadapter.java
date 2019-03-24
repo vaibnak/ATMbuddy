@@ -1,5 +1,6 @@
 package com.example.user.atmbuddy;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -84,7 +85,9 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.ExampleV
         holder.mTextView1.setText(currentItem.getName());
         holder.mTextView2.setText(currentItem.getStatus());
         holder.mTextView3.setText(Double.toString(currentItem.getDist()));
-    }
+
+        }
+
 
     @Override
     public int getItemCount() {

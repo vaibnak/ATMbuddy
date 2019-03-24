@@ -5,6 +5,7 @@ import android.location.Location;
 import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,9 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -28,10 +32,11 @@ import java.util.ArrayList;
 
 public class bankActivity extends AppCompatActivity {
 /* This is basically customer activity as this will be displayed whern customer will login, all banks and nearst banks are two tabs of it*/
-    private TabLayout tabLayout;
+    private TextView textView;
     private AppBarLayout appBarLayout;
     private ViewPager mviewPager;
     private RecyclerView mRecyclerView;
+    private LinearLayout relativeLayout;
     private Exampleadapter mAdapter;
     private DatabaseReference mDatabase;
     private  RecyclerView.LayoutManager mLayoutManager;
@@ -45,9 +50,11 @@ public class bankActivity extends AppCompatActivity {
         createExampleList();
         buildRecyclerView();
         Intent intent = getIntent();
-        tabLayout = findViewById(R.id.tablayout);
+        String nm = intent.getStringExtra("name");
+        textView = findViewById(R.id.apptitle);
+        textView.setText(nm);
         appBarLayout = findViewById(R.id.appbar);
-
+        relativeLayout = findViewById(R.id.relativelayout);
     }
 
 
@@ -83,17 +90,22 @@ public class bankActivity extends AppCompatActivity {
                     atm u = nameshot.getValue(atm.class);
                     A.add(u);
                 }
-                Log.i("reading ", "finished");
                 enter(A);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.i("error", " data fetching Cancelled: ");
+                showsnackbar("Error in database operation");
             }
         });
             }
 
+
+
+    public void showsnackbar(String msg){
+        Snackbar snackbar = Snackbar.make(relativeLayout, msg, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
 
     public void buildRecyclerView(){
         mRecyclerView = findViewById(R.id.recyclerView);
@@ -107,14 +119,11 @@ public class bankActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int pos) {
 
-                Toast.makeText(bankActivity.this, "clicked: "+ pos, Toast.LENGTH_SHORT).show();
                 Log.i("lat, lng: ", "google.navigation:q="+A.get(pos).lat+","+A.get(pos).lng);
                 Uri gmmIntentUri = Uri.parse("google.navigation:q="+A.get(pos).lat+","+A.get(pos).lng);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
-
-
             }
         });
 

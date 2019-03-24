@@ -27,6 +27,5 @@ public class customerActivity extends AppCompatActivity {
         adapter.AddFragment(new review(), "Review");
         mviewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(mviewPager);
-
     }
 }

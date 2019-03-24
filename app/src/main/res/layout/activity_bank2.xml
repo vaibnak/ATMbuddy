@@ -17,6 +17,7 @@
         android:gravity="center"
         >
         <TextView
+            android:id="@+id/apptitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -30,26 +31,10 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
+        android:background="#eff5ff"
         android:padding="4dp"
         android:scrollbars="vertical"
         />
-    <!--<android.support.design.widget.TabLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:tabGravity="fill"-->
-        <!--app:tabMode="fixed"-->
-        <!--android:id="@+id/tablayout"-->
-        <!--app:tabTextColor="@color/tabtextcolor"-->
-        <!--app:tabIndicatorColor="@color/tabindicatorcolor"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--/>-->
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:id="@+id/viewpager"-->
-        <!--&gt;</android.support.v4.view.ViewPager>-->
-
 
 
 </LinearLayout>
