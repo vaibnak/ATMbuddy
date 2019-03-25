@@ -36,6 +36,7 @@ This App has been built keeping in mind 2 types of users
 <p align="center">
   <img src="https://github.com/vaibnak/ATMbuddy/blob/master/homeScreen.png" width="200" height="300" />
   <img src="https://github.com/vaibnak/ATMbuddy/blob/master/customerReg.png" width="200" height="300"/>
+  <img src="https://github.com/vaibnak/ATMbuddy/blob/master/customerBanks.png" width="200" height="300"/>
   <img src="https://github.com/vaibnak/ATMbuddy/blob/master/ActivityonClicking.png" width="200" height="300"/>
   <img src="https://github.com/vaibnak/ATMbuddy/blob/master/complaintPage.png" width="200" height="300"/>
 </p>  
