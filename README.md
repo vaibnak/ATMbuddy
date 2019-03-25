@@ -2,3 +2,40 @@
 People face a lot of problems regarding ATMs, for which they generally cant do anything.<br>
 This app aims to solve some of those problems, It has some solutions to the problems which will make using the 
 ATM for common public an easy and smooth process.
+
+# Overview of the App
+This App has been built keeping in mind 2 types of users
+1) Banks
+2) Customers
+
+### Customers ###
+* Customers have to register into the App once and giving their Name,Contact number and Address.
+* Their location coordinates are obtained at that time using `FusedLocationProvider` API of Google
+* Customers are then shown the ATMs in their city, with their status as functional or non-funcional, the bank to which they belong<br>
+  and also the distance b/w their location and ATM location
+* Customers can click the ATM which they want and it will open a google Maps activity telling in navigation mode, telling them<br>
+  the path from their location to ATM.
+* If the Customer wants to notify the bank about the malfunctioning of the ATM machines, or any another issue then can do so<br>
+  long clickint the ATM and submitting his complaint.
+* He will be logged in for future, Untill he himself logs out by going to the logout button.
+
+### Banks ###
+* Banks will have to register giving the Bank name, Bank code(Uniqe code which identifies the Bank) and address of the Bank.
+* Banks will see all their existing ATMs and their status will be denoted by the color of the `cardview`
+  * red - for non-functional ATMs
+  * green - for functional ATMs
+* Banks can read about the complaints of the users of ATMs by going to the review section, where all complaints will be shown.
+* Banks can add ATMs by clicking onthe `floatingActionBar` and filling form, which asks for
+  * Code - This is used for uniquely identifying ATMs by Banks
+  * Adress - This is address is converted to Location coordinates using `Geocoding`.
+  * Status - This is set as working or not working based on the particular ATM.
+* On getting a review which notifies the bank about the ATM machine not working, or any other reasons for not working of ATMs<br>
+  bank can long click on the ATM cardview to change its status from working to non-working.
+  
+  # Technologies Used
+  Android Studio, Java, xml, Firebase(for all backend work). 
+  
+
+
+
+
