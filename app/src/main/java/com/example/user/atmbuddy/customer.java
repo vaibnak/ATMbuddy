@@ -1,7 +1,9 @@
 package com.example.user.atmbuddy;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -31,6 +33,7 @@ public class customer extends AppCompatActivity {
     Button button;
     double lng;
     double lat;
+    SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -64,6 +67,7 @@ public class customer extends AppCompatActivity {
         editText1 = findViewById(R.id.name);
         editText2 = findViewById(R.id.phn);
         editText3 = findViewById(R.id.addr);
+        sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE );
         relativeLayout = findViewById(R.id.relativelayout);
         button = findViewById(R.id.btn_reg);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -98,12 +102,13 @@ public class customer extends AppCompatActivity {
         String name = editText1.getText().toString();
         int phoneno = Integer.parseInt(editText2.getText().toString());
         String address = editText3.getText().toString();
+        sharedPreferences.edit().putString("cname", name).apply();
         Log.i(name + phoneno + address, " "+lat + lng);
         cst c = new cst(name, phoneno, address, lat, lng);
         String id = databaseReference.push().getKey();
         databaseReference.child(id).setValue(c);
         Intent intent = new Intent(getApplicationContext(), bankActivity.class);
-        intent.putExtra("name",name);
+        intent.putExtra("cname",name);
         startActivity(intent);
     }
 }

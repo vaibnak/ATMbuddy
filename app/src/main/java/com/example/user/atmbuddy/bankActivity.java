@@ -1,6 +1,8 @@
 package com.example.user.atmbuddy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.net.Uri;
 import android.support.design.widget.AppBarLayout;
@@ -11,11 +13,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -33,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class bankActivity extends AppCompatActivity {
+public class bankActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 /* This is basically customer activity as this will be displayed whern customer will login, all banks and nearst banks are two tabs of it*/
     private TextView textView;
     private AppBarLayout appBarLayout;
@@ -47,17 +51,7 @@ public class bankActivity extends AppCompatActivity {
     final ArrayList<atm> A = new ArrayList<>();
     DatabaseReference databaseReference;
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.id.logout, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +60,7 @@ public class bankActivity extends AppCompatActivity {
         createExampleList();
         buildRecyclerView();
         Intent intent = getIntent();
-        String nm = intent.getStringExtra("name");
+        String nm = intent.getStringExtra("cname");
         textView = findViewById(R.id.apptitle);
         textView.setText(nm);
         appBarLayout = findViewById(R.id.appbar);
@@ -152,5 +146,30 @@ public class bankActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    public void popup(View view) {
+        PopupMenu popup = new PopupMenu(this, view);
+
+        // This activity implements OnMenuItemClickListener
+        popup.setOnMenuItemClickListener((PopupMenu.OnMenuItemClickListener) this);
+        popup.inflate(R.menu.logout);
+        popup.show();
+    }
+
+
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.logout:
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE);
+                sharedPreferences.edit().clear().apply();
+                startActivity(intent);
+                return true;
+
+            default:
+                return false;
+        }
     }
 }

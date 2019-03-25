@@ -1,6 +1,8 @@
 package com.example.user.atmbuddy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v7.app.AppCompatActivity;
@@ -22,12 +24,14 @@ public class bank extends AppCompatActivity {
     DatabaseReference databaseReference;
     String addr,bnkname,bnkaddr;
     int bnkcode;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bank);
         Intent intent = getIntent();
+        sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE);
         editText1 = findViewById(R.id.bnkname);
         editText2 = findViewById(R.id.bnkcode);
         editText3 = findViewById(R.id.bnkaddr);
@@ -40,6 +44,7 @@ public class bank extends AppCompatActivity {
         bnkname = editText1.getText().toString();
         bnkcode = Integer.parseInt(editText2.getText().toString());
         bnkaddr = editText3.getText().toString();
+        sharedPreferences.edit().putString("bname", bnkname).apply();
         String id = databaseReference.push().getKey();
         bnk b = new bnk(bnkname, bnkcode, bnkaddr);
         databaseReference.child(id).setValue(b);

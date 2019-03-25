@@ -8,24 +8,42 @@
     tools:context=".customerActivity"
     android:id="@+id/relativelayout"
     >
+
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
-        android:elevation="0dp"
-        android:gravity="center"
-        >
+        android:elevation="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <TextView
             android:id="@+id/textview1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="10dp"
             android:text="SBI"
-            android:textSize="20dp"
             android:textColor="@android:color/white"
-            />
+            android:textSize="20dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="right"
+                android:layout_marginEnd="29dp"
+                android:onClick="popup"
+                android:src="@drawable/ic_menuimg"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="29dp" />
+        </RelativeLayout>
     </android.support.design.widget.AppBarLayout>
+
+
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,6 +54,7 @@
         app:tabIndicatorColor="@color/tabindicatorcolor"
         android:background="@color/colorPrimary"
         />
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
