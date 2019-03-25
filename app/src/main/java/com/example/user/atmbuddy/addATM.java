@@ -27,6 +27,7 @@ public class addATM extends AppCompatActivity {
     private  AddressResultReceiver resultReceiver;
     String addr;
     int code;
+    String bnkname;
     String status;
 
     class AddressResultReceiver extends ResultReceiver {
@@ -42,7 +43,7 @@ public class addATM extends AppCompatActivity {
             double lat = resultData.getDouble("lat");
             double lng = resultData.getDouble("lng");
             String id = databaseReference.push().getKey();
-            atm a = new atm("SBI",code,addr,status, lat, lng);
+            atm a = new atm(bnkname,code,addr,status, lat, lng);
             databaseReference.child(id).setValue(a);
 
         }
@@ -60,6 +61,7 @@ public class addATM extends AppCompatActivity {
         setContentView(R.layout.activity_add_atm);
         resultReceiver = new AddressResultReceiver(new android.os.Handler());
         Intent intent = getIntent();
+        bnkname = intent.getStringExtra("bname");
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("atms");
         editText1 = findViewById(R.id.code);

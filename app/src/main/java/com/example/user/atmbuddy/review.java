@@ -29,6 +29,7 @@ public class review extends Fragment {
     ArrayList<Exampleitem3> exampleList = new ArrayList<>();
     final ArrayList<revBank> A = new ArrayList<>();
     View view;
+    String bnkname;
     public review() {
 
     }
@@ -41,6 +42,7 @@ public class review extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        bnkname = getActivity().getIntent().getStringExtra("bname");
         createExampleList();
         buildRecyclerView();
     }
@@ -59,7 +61,7 @@ public class review extends Fragment {
             mAdapter.notifyDataSetChanged();
         A.clear();
         mDatabase = FirebaseDatabase.getInstance().getReference("reviews");
-        Query query = mDatabase.orderByChild("parent").equalTo("SBI");
+        Query query = mDatabase.orderByChild("parent").equalTo(bnkname);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

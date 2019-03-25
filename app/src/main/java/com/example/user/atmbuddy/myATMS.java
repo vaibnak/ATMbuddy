@@ -47,6 +47,7 @@ public class myATMS extends Fragment {
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        bnkname = getActivity().getIntent().getStringExtra("bname");
         relativeLayout = view.findViewById(R.id.relativelayout);
         floatingActionButton = view.findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +55,7 @@ public class myATMS extends Fragment {
             public void onClick(View v) {
                 A.clear();
                 Intent intent = new Intent(getActivity(),addATM.class);
+                intent.putExtra("bname", bnkname);
                 startActivity(intent);
 
             }
@@ -80,7 +82,7 @@ public class myATMS extends Fragment {
         mAdapter.notifyDataSetChanged();
         A.clear();
         mDatabase = FirebaseDatabase.getInstance().getReference("atms");
-        Query query = mDatabase.orderByChild("parent").equalTo("SBI");
+        Query query = mDatabase.orderByChild("parent").equalTo(bnkname);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
