@@ -11,11 +11,11 @@ This App has been built keeping in mind 2 types of users
 ### Customers ###
 * Customers have to register into the App once and giving their Name,Contact number and Address.
 * Their location coordinates are obtained at that time using `FusedLocationProvider` API of Google
-* Customers are then shown the ATMs in their city, with their status as functional or non-funcional, the bank to which they belong<br>
+* Customers are then shown the ATMs in their city, with their status as functional or non-funcional, the bank to which they belong
   and also the distance b/w their location and ATM location
-* Customers can click the ATM which they want and it will open a google Maps activity telling in navigation mode, telling them<br>
+* Customers can click the ATM which they want and it will open a google Maps activity telling in navigation mode, telling them
   the path from their location to ATM.
-* If the Customer wants to notify the bank about the malfunctioning of the ATM machines, or any another issue then can do so<br>
+* If the Customer wants to notify the bank about the malfunctioning of the ATM machines, or any another issue then can do so
   long clickint the ATM and submitting his complaint.
 * He will be logged in for future, Untill he himself logs out by going to the logout button.
 
@@ -29,7 +29,7 @@ This App has been built keeping in mind 2 types of users
   * Code - This is used for uniquely identifying ATMs by Banks
   * Adress - This is address is converted to Location coordinates using `Geocoding`.
   * Status - This is set as working or not working based on the particular ATM.
-* On getting a review which notifies the bank about the ATM machine not working, or any other reasons for not working of ATMs<br>
+* On getting a review which notifies the bank about the ATM machine not working, or any other reasons for not working of ATMs
   bank can long click on the ATM cardview to change its status from working to non-working.
   
   # Technologies Used
