@@ -31,7 +31,14 @@ This App has been built keeping in mind 2 types of users
   * Status - This is set as working or not working based on the particular ATM.
 * On getting a review which notifies the bank about the ATM machine not working, or any other reasons for not working of ATMs
   bank can long click on the ATM cardview to change its status from working to non-working.
-  
+
+### Somescreenshots from the working module ###
+<p align="center">
+  <img src="https://github.com/vaibnak/ATMbuddy/blob/master/homeScreen.png" width="200" height="300" />
+  <img src="https://github.com/vaibnak/ATMbuddy/blob/master/customerReg.png" width="200" height="300"/>
+  <img src="https://github.com/vaibnak/ATMbuddy/blob/master/ActivityonClicking.png" width="200" height="300"/>
+  <img src="https://github.com/vaibnak/ATMbuddy/blob/master/complaintPage.png" width="200" height="300"/>
+</p>  
   # Technologies Used
   Android Studio, Java, xml, Firebase(for all backend work). 
   
