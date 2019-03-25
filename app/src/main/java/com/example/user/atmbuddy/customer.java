@@ -98,17 +98,32 @@ public class customer extends AppCompatActivity {
         snackbar.show();
     }
 
+    public boolean check(String name, String phn, String address){
+        if(name.isEmpty() || phn.length() != 10 || address.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
+
+
+
     public void click(View view) {
         String name = editText1.getText().toString();
-        int phoneno = Integer.parseInt(editText2.getText().toString());
+        String phoneno = editText2.getText().toString();
         String address = editText3.getText().toString();
-        sharedPreferences.edit().putString("cname", name).apply();
-        Log.i(name + phoneno + address, " "+lat + lng);
-        cst c = new cst(name, phoneno, address, lat, lng);
-        String id = databaseReference.push().getKey();
-        databaseReference.child(id).setValue(c);
-        Intent intent = new Intent(getApplicationContext(), bankActivity.class);
-        intent.putExtra("cname",name);
-        startActivity(intent);
+        if(check(name, phoneno, address)){
+            sharedPreferences.edit().putString("cname", name).apply();
+            Log.i(name + phoneno + address, " "+lat + lng);
+            cst c = new cst(name, phoneno, address, lat, lng);
+            String id = databaseReference.push().getKey();
+            databaseReference.child(id).setValue(c);
+            Intent intent = new Intent(getApplicationContext(), bankActivity.class);
+            intent.putExtra("cname",name);
+            startActivity(intent);
+        }else{
+            showsnackbar("Please enter correct details");
+        }
+
     }
 }

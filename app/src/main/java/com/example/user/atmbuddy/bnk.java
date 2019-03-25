@@ -2,10 +2,10 @@ package com.example.user.atmbuddy;
 
 public class bnk {
     String bnkname;
-    int bnkcode;
+    String bnkcode;
     String address;
 
-    public bnk(String bnkname, int bnkcode, String address) {
+    public bnk(String bnkname, String bnkcode, String address) {
         this.bnkname = bnkname;
         this.bnkcode = bnkcode;
         this.address = address;
@@ -15,7 +15,7 @@ public class bnk {
         return bnkname;
     }
 
-    public int getBnkcode() {
+    public String getBnkcode() {
         return bnkcode;
     }
 

@@ -2,12 +2,12 @@ package com.example.user.atmbuddy;
 
 public class cst {
     String name;
-    int phoneno;
+    String phoneno;
     String address;
     double lat;
     double lng;
 
-    public cst(String name, int phoneno, String address, double lat, double lng) {
+    public cst(String name, String phoneno, String address, double lat, double lng) {
         this.name = name;
         this.phoneno = phoneno;
         this.address = address;
@@ -19,7 +19,7 @@ public class cst {
         return name;
     }
 
-    public int getPhoneno() {
+    public String getPhoneno() {
         return phoneno;
     }
 
