@@ -84,7 +84,7 @@ public class Exampleadapter extends RecyclerView.Adapter<Exampleadapter.ExampleV
         Exampleitem currentItem = mExampleList.get(i);
         holder.mTextView1.setText(currentItem.getName());
         holder.mTextView2.setText(currentItem.getStatus());
-        holder.mTextView3.setText(Double.toString(currentItem.getDist()));
+        holder.mTextView3.setText(Double.toString(currentItem.getDist())+"km");
 
         }
 

@@ -31,8 +31,8 @@ public class customer extends AppCompatActivity {
     EditText editText3;
     RelativeLayout relativeLayout;
     Button button;
-    double lng;
-    double lat;
+    float lng;
+    float lat;
     SharedPreferences sharedPreferences;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
@@ -48,8 +48,10 @@ public class customer extends AppCompatActivity {
                             @Override
                             public void onSuccess(Location location) {
                                 if(location != null){
-                                    lng = location.getLongitude();
-                                    lat = location.getLatitude();
+                                    lng = (float)location.getLongitude();
+                                    lat = (float)location.getLatitude();
+                                    sharedPreferences.edit().putFloat("lat",lat).apply();
+                                    sharedPreferences.edit().putFloat("lng",lng).apply();
                                     Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
                                 }else{
                                     showsnackbar("Location null, Please enable location service");
@@ -81,8 +83,10 @@ public class customer extends AppCompatActivity {
                         @Override
                         public void onSuccess(Location location) {
                             if(location != null){
-                                lng = location.getLongitude();
-                                lat = location.getLatitude();
+                                lng = (float)location.getLongitude();
+                                lat = (float)location.getLatitude();
+                                sharedPreferences.edit().putFloat("lat",lat).apply();
+                                sharedPreferences.edit().putFloat("lng",lng).apply();
                                 Log.i("longitude, latitude", location.getLatitude()+" "+location.getLongitude());
                             }else{
                                 showsnackbar("Location null, Please enable location service");

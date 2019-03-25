@@ -42,6 +42,7 @@ public class bankActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     private TextView textView;
     private AppBarLayout appBarLayout;
     private ViewPager mviewPager;
+    SharedPreferences sharedPreferences;
     private RecyclerView mRecyclerView;
     private LinearLayout relativeLayout;
     private Exampleadapter mAdapter;
@@ -59,6 +60,7 @@ public class bankActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_bank2);
         createExampleList();
         buildRecyclerView();
+        sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE);
         Intent intent = getIntent();
         String nm = intent.getStringExtra("cname");
         textView = findViewById(R.id.apptitle);
@@ -73,14 +75,15 @@ public class bankActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         locationA.setLongitude(A.get(p).lng);
         locationA.setLatitude(A.get(p).lat);
         Location locationB = new Location("point B");
-        locationB.setLatitude(22.06);
-        locationB.setLongitude(81.68);
-        float dist = locationA.distanceTo(locationB);
+        float lat = sharedPreferences.getFloat("lat",(float)20.10);
+        float lng = sharedPreferences.getFloat("lng",(float)82.14);
+        locationB.setLatitude(lat);
+        locationB.setLongitude(lng);
+        double dist = locationA.distanceTo(locationB);
         Log.i("distance: ", ""+dist);
         dist = dist/1000;
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        float val = Float.parseFloat(decimalFormat.format(dist));
-        exampleList.add(new Exampleitem(A.get(p).parent,A.get(p).status,val ));
+        String val = String.format("%.2f", dist);
+        exampleList.add(new Exampleitem(A.get(p).parent,A.get(p).status,Double.parseDouble(val)));
     }
     public void enter(ArrayList<atm> A){
         Log.i("size: ", Integer.toString(A.size()));
@@ -163,7 +166,6 @@ public class bankActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         switch (item.getItemId()) {
             case R.id.logout:
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE);
                 sharedPreferences.edit().clear().apply();
                 startActivity(intent);
                 return true;
