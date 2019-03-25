@@ -2,7 +2,7 @@ package com.example.user.atmbuddy;
 
 public class atm {
     String parent;
-    int code;
+    String code;
     String address;
     String status;
     double lat;
@@ -15,7 +15,7 @@ public class atm {
     public atm() {
     }
 
-    public atm(String parent, int code, String address, String status, double lat, double lng) {
+    public atm(String parent, String code, String address, String status, double lat, double lng) {
         this.parent = parent;
 
         this.code = code;
@@ -25,7 +25,7 @@ public class atm {
         this.lng = lng;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 

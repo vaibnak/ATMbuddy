@@ -4,12 +4,14 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
@@ -23,10 +25,11 @@ public class addATM extends AppCompatActivity {
     EditText editText1;
     EditText editText2;
     EditText editText3;
+    RelativeLayout relativeLayout;
     Button button;
     private  AddressResultReceiver resultReceiver;
     String addr;
-    int code;
+    String  code;
     String bnkname;
     String status;
 
@@ -37,6 +40,7 @@ public class addATM extends AppCompatActivity {
         @Override
         protected  void onReceiveResult(int resultCode, Bundle resultData) {
             if (resultData == null){
+                showsnackbar("This service is not working properly, try again later");
                 return;
             }
             textView.setText("Added");
@@ -61,6 +65,7 @@ public class addATM extends AppCompatActivity {
         setContentView(R.layout.activity_add_atm);
         resultReceiver = new AddressResultReceiver(new android.os.Handler());
         Intent intent = getIntent();
+        relativeLayout = findViewById(R.id.relativelayout);
         bnkname = intent.getStringExtra("bname");
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("atms");
@@ -71,11 +76,28 @@ public class addATM extends AppCompatActivity {
         button = findViewById(R.id.btn_add);
     }
 
+    public void showsnackbar(String msg){
+        Snackbar snackbar = Snackbar.make(relativeLayout, msg, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    public boolean check(String code,String status, String address ){
+        if(code.isEmpty() || status.isEmpty() || address.isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     public void clickit(View view) {
-        textView.setText("adding....");
-        code = Integer.parseInt(editText1.getText().toString());
+        code = editText1.getText().toString();
         status = editText2.getText().toString();
         addr = editText3.getText().toString();
-        startIntentService();
+        if(check(code, status, addr)){
+            textView.setText("adding....");
+            startIntentService();
+        }else{
+            showsnackbar("Please enter correct details");
+        }
+
     }
 }

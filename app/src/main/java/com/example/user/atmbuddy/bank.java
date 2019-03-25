@@ -45,7 +45,7 @@ public class bank extends AppCompatActivity {
     }
 
     public boolean check(String bnkname, String  bnkcode, String bnkaddr){
-        if(bnkname.isEmpty() || bnkaddr.isEmpty()){
+        if(bnkname.isEmpty() || bnkaddr.isEmpty() || bnkcode.isEmpty()){
             return false;
         }
         return true;

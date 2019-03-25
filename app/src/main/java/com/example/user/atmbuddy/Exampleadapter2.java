@@ -80,7 +80,7 @@ public class Exampleadapter2  extends RecyclerView.Adapter<Exampleadapter2.Examp
     @Override
     public void onBindViewHolder(@NonNull Exampleadapter2.ExampleViewHolder holder, int i) {
         Exampleitem2 currentItem = mExampleList.get(i);
-        holder.mTextView1.setText(Integer.toString(currentItem.getCode()));
+        holder.mTextView1.setText(currentItem.getCode());
         holder.mTextView2.setText(currentItem.getAddress());
         if(currentItem.getStatus().equals("working"))
         holder.cardView.setCardBackgroundColor(Color.parseColor("#a0ffab"));

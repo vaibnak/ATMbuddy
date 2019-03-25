@@ -122,7 +122,7 @@ public class myATMS extends Fragment {
         mAdapter.setOnItemLongClickListener(new Exampleadapter2.OnItemLongClickListener() {
             @Override
             public void onItemLongClick(int pos) {
-                int cd = A.get(pos).code;
+                String cd = A.get(pos).code;
                 Log.i("cd: ", ""+cd);
                 Query query = FirebaseDatabase.getInstance().getReference("atms").orderByChild("code").equalTo(cd);
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
