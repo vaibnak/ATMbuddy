@@ -1,6 +1,8 @@
 package com.example.user.atmbuddy;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.provider.ContactsContract;
@@ -98,6 +100,15 @@ public class addATM extends AppCompatActivity {
         }else{
             showsnackbar("Please enter correct details");
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("com.example.user.atmbuddy", Context.MODE_PRIVATE);
+        Intent intent = new Intent(getApplicationContext(),customerActivity.class);
+        intent.putExtra("bname",sharedPreferences.getString("bname",null));
+        startActivity(intent);
 
     }
 }
