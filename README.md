@@ -50,7 +50,7 @@ This App has been built keeping in mind 2 types of users
   Android Studio, Java, xml, Firebase(for all backend work).
 # Note
   This repository is open to further improvements, please raise an issue if you find one or give a suggestion if you have one,
-  also start it if you liked the concept.
+  also star it if you liked the concept.
   
 
 
